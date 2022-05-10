@@ -6,6 +6,7 @@ use App\DataAccess\Repositories\CategoryRepository;
 use App\DataAccess\Repositories\ProductRepository;
 use App\ViewModels\CatalogViewModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -22,13 +23,19 @@ class ProductController extends Controller
 
     public function getCatalogPage()
     {
+        $isAuth = false;
+
+        if (Auth::user()) {
+            $isAuth = true;
+        }
+
         $products = $this->productRepository->getAll();
 
         foreach ($products as &$product) {
             $product['categories'] = $this->categoryRepository->getCategoriesOfProduct($product['id']);
         }
 
-        $viewModel = new CatalogViewModel($products);
+        $viewModel = new CatalogViewModel($products, $isAuth);
 
         return view('catalog.catalog', ['catalogViewModel' => $viewModel]);
     }

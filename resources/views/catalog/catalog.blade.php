@@ -2,6 +2,21 @@
 /** @var App\ViewModels\CatalogViewModel $catalogViewModel */ ?>
 <html lang="en">
 <body>
+@if ($catalogViewModel->auth === true)
+    <form action="/logout" method="post">
+        @csrf
+        <input type="submit" value="Logout">
+    </form>
+
+    <form action="/orders">
+        @csrf
+        <input type="submit" value="Orders">
+    </form>
+@else
+    <form action="/login">
+        <input type="submit" value="Login" />
+    </form>
+@endif
 <h1>Product list</h1>
 <table>
     @foreach($catalogViewModel->products as $product)
