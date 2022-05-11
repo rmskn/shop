@@ -11,4 +11,9 @@ class ProductRepository
         return Product::all()->toArray();
     }
 
+    public function getById(int $id)
+    {
+        return Product::query()->find($id)->toArray();
+    }
+
 }

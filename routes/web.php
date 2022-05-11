@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('catalog', [ProductController::class, 'getCatalogPage'])->name('catalog');
+
+Route::group(['middleware' => 'auth', 'namespace' => 'App\Http\Controllers'], function () {
+    Route::get('orders', [OrderController::class, 'getOrdersPage'])->name('orders');
+});
 
 Auth::routes();
 
