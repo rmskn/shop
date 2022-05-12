@@ -1,5 +1,5 @@
 <?php
-/** @var App\ViewModels\CatalogViewModel $catalogViewModel */ ?>
+/** @var App\ViewModels\CatalogViewModel $catalogViewModel */?>
 <html lang="en">
 <head>
     <title>Catalog</title>
@@ -7,20 +7,9 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-@if ($catalogViewModel->auth === true)
-    <form action="/logout" method="post">
-        @csrf
-        <input type="submit" value="Logout">
-    </form>
-
-    <a href="{{route('orders')}}">Orders</a>
-@else
-    <form action="/login">
-        <input type="submit" value="Login"/>
-    </form>
-@endif
+@include('header', ['auth' => $catalogViewModel->auth, 'page' => 'Catalog'])
 <p class="h1 text-center mb-4">Product list</p>
-<table class="table w-75 p-3 mx-auto">
+<table class="table w-75 p-3 mx-auto align-middle">
     @foreach($catalogViewModel->products as $product)
         <tr>
             <td>
@@ -28,7 +17,7 @@
             </td>
             <td>
                 @if (count(json_decode($product['pictures']))>0)
-                    <img src="{{json_decode($product['pictures'])[0]}}" alt="photo" height="50pt">
+                    <img class="mx-auto d-block" src="{{json_decode($product['pictures'])[0]}}" alt="photo" height="50pt">
                 @endif
             </td>
             <td>

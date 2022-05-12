@@ -18,7 +18,6 @@ class OrderController extends Controller
     public function getOrdersPage()
     {
         $userId = Auth::id();
-        $userId = 1;
 
         $orders = $this->orderRepository->getUserOrders($userId);
 
