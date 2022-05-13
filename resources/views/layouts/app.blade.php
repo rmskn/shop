@@ -22,7 +22,7 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-@include('header', ['auth' => false, 'page' => 'Login'])
+@include('header', ['auth' => false, 'page' => ''])
 
 <main class="py-4">
     @yield('content')

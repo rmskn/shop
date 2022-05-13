@@ -35,7 +35,9 @@ class ProductController extends Controller
             $product['categories'] = $this->categoryRepository->getCategoriesOfProduct($product['id']);
         }
 
-        $viewModel = new CatalogViewModel($products, $isAuth);
+        $availableCategories = $this->categoryRepository->getAllCategories();
+
+        $viewModel = new CatalogViewModel($products, $isAuth, $availableCategories);
 
         return view('catalog.catalog', ['catalogViewModel' => $viewModel]);
     }

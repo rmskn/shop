@@ -31,4 +31,23 @@ class CategoryRepository
 
         return $categories;
     }
+
+    public function getAllCategories(): array
+    {
+        $categories = [];
+
+        $sectionsCodes = Category::query()
+            ->select('section_id')
+            ->distinct()
+            ->get();
+
+        foreach ($sectionsCodes as $section) {
+            $categories[] = [
+                'code' => $section->section_id,
+                'title' => $this->sectionRepository->getSectionTitle($section->section_id)
+            ];
+        }
+
+        return $categories;
+    }
 }
