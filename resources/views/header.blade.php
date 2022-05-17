@@ -7,7 +7,7 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark p-2">
     <a class="navbar-brand p-0" href="/">
         <img src="/images/logo.ico" alt="logo" width="48" height="48">
-{{--        <a class="navbar-brand" href="/">Shop</a>--}}
+        {{--        <a class="navbar-brand" href="/">Shop</a>--}}
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
@@ -23,6 +23,12 @@
                     <a class="nav-link" href="{{route('orders')}}">Orders</a>
                 </li>
             @endif
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('cart')}}">
+                    Cart
+                    <span class="badge bg-primary rounded-pill" id="cartQuantity">0</span>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="d-flex">

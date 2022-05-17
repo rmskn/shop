@@ -31,13 +31,16 @@
             <td>
                 {{$product['id']}}
             </td>
-            <td>
+            <td class="productImage">
                 @if (count(json_decode($product['pictures']))>0)
                     <img class="mx-auto d-block" src="{{json_decode($product['pictures'])[0]}}" alt="photo"
                          height="50pt">
+                @else
+                    <img class="mx-auto d-block" src="/images/no-image.jpg" alt="photo"
+                         height="50pt">
                 @endif
             </td>
-            <td>
+            <td class="productTitle" id="{{$product['title']}}">
                 {{$product['title']}}
             </td>
             <td>
@@ -45,7 +48,7 @@
                     {{$category['title']}}<br>
                 @endforeach
             </td>
-            <td>
+            <td class="productPrice" id="{{$product['price']}}">
                 {{$product['price']}} RUB
             </td>
             {{--            <td>--}}
@@ -55,13 +58,14 @@
             {{--                <a href="">Edit</a>--}}
             {{--            </td>--}}
             <td>
-                <a href="">Add to cart</a>
+                <button class="btn btn-primary" id="addToCart" value="{{$product['id']}}">Add to cart</button>
             </td>
         </tr>
     @endforeach
 </table>
 
+<script src="{{ asset("js/Cart.js") }}"></script>
 <script src="{{ asset("js/sort_products.js") }}"></script>
-
+<script src="{{ asset("js/cartCatalogPage.js") }}"></script>
 </body>
 </html>

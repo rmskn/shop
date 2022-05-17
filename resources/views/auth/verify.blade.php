@@ -1,5 +1,5 @@
 <?php
-dd('1111');
+//dd('1111');
 ?>
 <html lang="en">
 <head>
@@ -33,3 +33,6 @@ dd('1111');
         </div>
     </div>
 </div>
+
+<script src="{{ asset("js/Cart.js") }}"></script>
+<script src="{{ asset("js/update_cart_counter.js") }}"></script>

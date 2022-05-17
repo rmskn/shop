@@ -23,7 +23,7 @@
 </head>
 <body>
 @include('header', ['auth' => false, 'page' => ''])
-
+`
 <main class="py-4">
     @yield('content')
 </main>
