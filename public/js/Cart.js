@@ -9,6 +9,11 @@ class Cart {
     setMapToLocalStorageJson(map, key) {
         let obj = Object.fromEntries(map)
         localStorage.setItem(key, JSON.stringify(obj))
+        //this.updateConfirmOrderForm()
+    }
+
+    updateConfirmOrderForm() {
+        document.getElementById('postCart').setAttribute('value', localStorage['cart'])
     }
 
     getObjectProduct(button) {
@@ -164,9 +169,15 @@ class Cart {
             `    <h5 id=\"orderSectionTotalPrice\">₽ ${totalPrice}</h5>` +
             "</div>"
 
-        parentContainerOrderParam.innerHTML += "<button type=\"button\" class=\"btn btn-dark btn-block btn-lg\"" +
+        let cartToPost = localStorage['cart']
+        let token = document.querySelector('meta[name="csrf-token"]').content
+
+        parentContainerOrderParam.innerHTML += "<form method='post' action='create-order'>" +
+            `<input id='postCart' name='cart' value='${cartToPost}' hidden>` +
+            `<input type="hidden" name="_token" value="${token}">` +
+            "<button type=\"submit\" class=\"btn btn-dark btn-block btn-lg\"" +
             "        data-mdb-ripple-color=\"dark\" id=\"confirmOrder\"'>Confirm" +
-            "</button>"
+            "</button></form>"
 
         localStorage['totalPrice'] = totalPrice
     }
@@ -269,6 +280,24 @@ class Cart {
         }
     }
 
+    confirmOrder() {
+        // let xhr = new XMLHttpRequest();
+        //
+        // let body = 'cart'//localStorage['cart']
+        //
+        // xhr.open("POST", '/create-order', true);
+        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content)
+        //
+        // xhr.send(body);
+        //
+        // xhr.onload = function() {
+        //
+        //     console.log(`Загружено: ${xhr.status} ${xhr.response}`);
+        // };
+    }
 
-
+    clear() {
+        localStorage.clear()
+    }
 }

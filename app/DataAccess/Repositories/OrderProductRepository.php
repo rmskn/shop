@@ -21,4 +21,14 @@ class OrderProductRepository
             ->where('order_id', $orderId)
             ->sum('count');
     }
+
+    public function create(int $orderId, int $productId, float $count, float $price)
+    {
+        $orderProduct = new OrderProduct();
+        $orderProduct->order_id = $orderId;
+        $orderProduct->product_id = $productId;
+        $orderProduct->price = $price;
+        $orderProduct->count = $count;
+        $orderProduct->save();
+    }
 }

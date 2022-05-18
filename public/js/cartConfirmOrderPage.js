@@ -12,21 +12,24 @@ cart.updateCartQuantity()
 buttonsIncreaseCount.forEach((button) => {
     button.addEventListener('click', () => {
         cart.increaseCountProduct(button)
+        cart.updateConfirmOrderForm()
     })
 })
 
 buttonsDecreaseCount.forEach((button) => {
     button.addEventListener('click', () => {
         cart.decreaseCountProduct(button)
+        cart.updateConfirmOrderForm()
     })
 })
 
 buttonsRemoveProductFromCart.forEach((button) => {
     button.addEventListener('click', () => {
         cart.removeProductFromCart(button)
+        cart.updateConfirmOrderForm()
     })
 })
 
-buttonConfirmOrder.addEventListener('click', () => {
-
-})
+// buttonConfirmOrder.addEventListener('click', () => {
+//     //cart.confirmOrder()
+// })
