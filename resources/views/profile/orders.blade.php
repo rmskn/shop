@@ -26,7 +26,7 @@
         </thead>
         <tbody>
         @foreach($ordersViewModel->orders as $order)
-            <tr>
+            <tr class="align-middle">
                 <td>
                     {{$order->id}}
                 </td>
@@ -42,10 +42,16 @@
                 <td>
                     {{$order->statusTitle}}
                 </td>
+
+                <td>
+                    <button class="btn btn-primary" id="reorder" value="{{$order->id}}">Reorder</button>
+                </td>
             </tr>
 
+            <tr id="orderProducts{{$order->id}}" value="{{json_encode($order->products, JSON_THROW_ON_ERROR)}}" hidden></tr>
+
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     <table class="table table-striped w-50 p-3 mx-auto">
                         @foreach($order->products as $product)
                             <tr>
@@ -81,5 +87,6 @@
 
 <script src="{{ asset("js/Cart.js") }}"></script>
 <script src="{{ asset("js/update_cart_counter.js") }}"></script>
+<script src="{{ asset("js/reorder.js") }}"></script>
 </body>
 </html>

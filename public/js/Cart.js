@@ -16,7 +16,7 @@ class Cart {
         document.getElementById('postCart').setAttribute('value', localStorage['cart'])
     }
 
-    getObjectProduct(button) {
+    getObjectProductByCatalog(button) {
         return {
             title: button.parentElement
                 .parentElement
@@ -36,10 +36,13 @@ class Cart {
 
     updateCartQuantity() {
         let spanCartQuantity = document.getElementById('cartQuantity');
-        if (typeof localStorage['cartQuantity'] !== 'undefined') {
+        if ((typeof localStorage['cartQuantity'] !== 'undefined') && (!isNaN(localStorage['cartQuantity']))) {
             spanCartQuantity.innerHTML = localStorage['cartQuantity']
         } else {
             spanCartQuantity.innerHTML = '0'
+        }
+        if (isNaN(localStorage['cartQuantity']) || (localStorage['cartQuantity'] < 0)) {
+            localStorage['cartQuantity'] = 0
         }
     }
 
@@ -54,14 +57,14 @@ class Cart {
                     if (cart.has(itemId)) {
                         cart.set(itemId, {...cart.get(itemId), count: cart.get(itemId).count + 1})
                     } else {
-                        cart.set(itemId, this.getObjectProduct(button))
+                        cart.set(itemId, this.getObjectProductByCatalog(button))
                     }
 
                     this.setMapToLocalStorageJson(cart, 'cart')
                     localStorage.setItem('cartQuantity', parseInt(localStorage.getItem('cartQuantity')) + 1)
                 } else {
                     let cart = new Map([
-                        [itemId, this.getObjectProduct(button)]
+                        [itemId, this.getObjectProductByCatalog(button)]
                     ])
 
                     this.setMapToLocalStorageJson(cart, 'cart')
@@ -299,5 +302,27 @@ class Cart {
 
     clear() {
         localStorage.clear()
+    }
+
+    convertObjectToMap(obj) {
+        let entries = Object.entries(obj)
+        let map = new Map()
+        entries.forEach((value) => {
+            map.set(value[0], value[1])
+        })
+        return map
+    }
+
+    addToCartReorder(products, cartQuantity) {
+        this.clear()
+        let cart = new Map()
+        products.forEach((product, productId) => {
+            cart.set(productId, Object.fromEntries(this.convertObjectToMap(product)))
+        })
+
+        this.setMapToLocalStorageJson(cart, 'cart')
+        localStorage.setItem('cartQuantity', cartQuantity)
+
+        window.location.replace("cart");
     }
 }
