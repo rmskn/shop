@@ -25,6 +25,9 @@ Route::get('catalog', [ProductController::class, 'getCatalogPage'])->name('catal
 Route::get('cart', [CartController::class, 'getCartPage'])->name('cart');
 
 Route::group(['middleware' => 'auth', 'namespace' => 'App\Http\Controllers'], function () {
+    Route::group(['middleware' => 'administrate', 'namespace' => 'App\Http\Controllers'], function () {
+
+    });
     Route::get('orders', [OrderController::class, 'getOrdersPage'])->name('orders');
     Route::post('create-order', [OrderController::class, 'createOrder'])->name('create-order');
 });
