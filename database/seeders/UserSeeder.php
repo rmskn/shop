@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
             'login' => 'user1',
             'email' => 'user1@mail.com',
             'password' => Hash::make('password'),
-            'remember_token' => ''
+            'remember_token' => '',
+            'isAdmin' => false
         ]);
 
         DB::table('users')->insert([
@@ -29,7 +30,8 @@ class UserSeeder extends Seeder
             'login' => 'admin',
             'email' => 'admin@mail.com',
             'password' => Hash::make('admin'),
-            'remember_token' => ''
+            'remember_token' => '',
+            'isAdmin' => true
         ]);
     }
 }
