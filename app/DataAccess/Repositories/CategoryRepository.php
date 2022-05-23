@@ -50,4 +50,24 @@ class CategoryRepository
 
         return $categories;
     }
+
+    public function updateCategoriesOfProduct(array $categories, int $productId): void
+    {
+        $this->deleteCategoriesOfProduct($productId);
+
+        foreach ($categories as $category) {
+            $newCat = new Category();
+            $newCat['product_id'] = $productId;
+            $newCat['section_id'] = $category;
+            $newCat->save();
+        }
+    }
+
+    public function deleteCategoriesOfProduct(int $productId)
+    {
+        Category::query()
+            ->where('product_id', $productId)
+            ->delete();
+    }
+
 }

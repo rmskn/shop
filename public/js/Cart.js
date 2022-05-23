@@ -30,7 +30,7 @@ class Cart {
             image: button.parentElement
                 .parentElement.getElementsByClassName('productImage')[0]
                 .getElementsByTagName('img')[0]
-                .getAttribute('src'),
+                .getAttribute('value'),
         }
     }
 
@@ -135,7 +135,7 @@ class Cart {
                 `        <h6 class=\"text-black mb-0\">${productId}</h6>` +
                 "    </div>" +
                 "    <div class=\"col-md-2 col-lg-2 col-xl-2\">" +
-                `        <img src=\"${product.image}" class=\"img-fluid rounded-3\" alt=\"Cotton T-shirt\">` +
+                `        <img src=\"images/Products/${productId}/${product.image}" class=\"img-fluid rounded-3\" alt=\"Cotton T-shirt\">` +
                 "    </div>" +
                 "    <div class=\"col-md-3 col-lg-3 col-xl-3\">" +
                 `        <h6 class=\"text-black mb-0\">${product.title}</h6>` +

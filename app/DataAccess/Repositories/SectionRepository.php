@@ -15,4 +15,9 @@ class SectionRepository
 
         return $sectionTitle->title;
     }
+
+    public function getAll(): array
+    {
+        return Section::all()->toArray();
+    }
 }

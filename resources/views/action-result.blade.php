@@ -7,7 +7,6 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-@include('header', ['auth' => $actionResultViewModel->auth, 'page' => 'Action result'])
 
 <p class="h1 text-center mb-4">{{$actionResultViewModel->mainMessage}}</p>
 
@@ -21,8 +20,5 @@
     <div id="actionsToDo" value="{{json_encode($actionResultViewModel->actionsToDo, JSON_THROW_ON_ERROR)}}"></div>
 </div>
 
-<script src="{{ asset("js/Cart.js") }}"></script>
-<script src="{{ asset("js/actionResultPage.js") }}"></script>
-<script src="{{ asset("js/update_cart_counter.js") }}"></script>
 </body>
 </html>
