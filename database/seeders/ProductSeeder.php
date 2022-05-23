@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
             'description' => 'Very tasty apple',
             'price' => 100,
             'pictures' => json_encode(
-                ['images/Products/1/apple1.jpg', 'images/Products/1/apple2.jpg'],
+                ['apple1.jpg', 'apple2.jpg'],
                 JSON_THROW_ON_ERROR
             )
         ]);
@@ -30,7 +30,7 @@ class ProductSeeder extends Seeder
             'description' => 'Very tasty chocolate',
             'price' => 170,
             'pictures' => json_encode(
-                ['images/Products/2/chocolate1.jpg', 'images/Products/2/chocolate2.jpg'],
+                ['chocolate1.jpg'],
                 JSON_THROW_ON_ERROR
             )
         ]);
@@ -40,7 +40,7 @@ class ProductSeeder extends Seeder
             'description' => 'Very warm jacket',
             'price' => 270,
             'pictures' => json_encode(
-                ['images/Products/3/jacket1.jpg'],
+                ['jacket1.jpg'],
                 JSON_THROW_ON_ERROR
             )
         ]);
