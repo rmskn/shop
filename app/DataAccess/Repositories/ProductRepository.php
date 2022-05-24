@@ -20,9 +20,12 @@ class ProductRepository
         $this->categoryRepository = $categoryRepository;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function getAll()
     {
-        return Product::all()->toArray();
+        return Product::all();
     }
 
     public function getById(int $id)
@@ -40,7 +43,7 @@ class ProductRepository
      */
     public function getAllWithCategories()
     {
-        $products = $this->getAll();
+        $products = $this->getAll()->toArray();
         $productsWithCat = [];
         foreach ($products as $product) {
             $productsWithCat[] = $this->getProductWithCategories($product['id']);

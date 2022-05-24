@@ -121,10 +121,16 @@ class Cart {
             this.generateEmptyCartPage()
             return null
         } else {
-            parentContainerProducts.innerHTML = "<div class=\"d-flex justify-content-between align-items-center mb-5\"'>" +
-                "<h1 class=\"fw-bold mb-0 text-black\">Shopping Cart</h1>" +
-                `<h6 class=\"mb-0 text-muted\" id=\"productsSectionHeaderCounter\">${cartQuantity} items</h6>` +
-                "</div>"
+            parentContainerProducts.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>"
+                <h6 class="mb-0 text-muted" id="productsSectionHeaderCounter">${cartQuantity} items</h6>
+            </div>
+            `;
+                // "<div class=\"d-flex justify-content-between align-items-center mb-5\"'>" +
+                // "<h1 class=\"fw-bold mb-0 text-black\">Shopping Cart</h1>" +
+                // `<h6 class=\"mb-0 text-muted\" id=\"productsSectionHeaderCounter\">${cartQuantity} items</h6>` +
+                // "</div>"
         }
 
         let totalPrice = 0
@@ -135,7 +141,7 @@ class Cart {
                 `        <h6 class=\"text-black mb-0\">${productId}</h6>` +
                 "    </div>" +
                 "    <div class=\"col-md-2 col-lg-2 col-xl-2\">" +
-                `        <img src=\"images/Products/${productId}/${product.image}" class=\"img-fluid rounded-3\" alt=\"Cotton T-shirt\">` +
+                `        <img src=\"${product.image}" class=\"img-fluid rounded-3\" alt=\"Cotton T-shirt\">` +
                 "    </div>" +
                 "    <div class=\"col-md-3 col-lg-3 col-xl-3\">" +
                 `        <h6 class=\"text-black mb-0\">${product.title}</h6>` +

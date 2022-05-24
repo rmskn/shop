@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\DataAccess\Repositories\CategoryRepository;
 use App\DataAccess\Repositories\ProductRepository;
+use App\Facades\AuthHelper;
+use App\Mappers\ProductListMapper;
 use App\ViewModels\CatalogViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,13 +14,16 @@ class ProductController extends Controller
 {
     private ProductRepository $productRepository;
     private CategoryRepository $categoryRepository;
+    private ProductListMapper $productListMapper;
 
     public function __construct(
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
+        ProductListMapper $productListMapper
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->productRepository = $productRepository;
+        $this->productListMapper = $productListMapper;
     }
 
     public function getCatalogPage()
@@ -29,7 +34,7 @@ class ProductController extends Controller
             $isAuth = true;
         }
 
-        $products = $this->productRepository->getAll();
+        $products = $this->productRepository->getAll()->toArray();
 
         foreach ($products as &$product) {
             $product['categories'] = $this->categoryRepository->getCategoriesOfProduct($product['id']);
@@ -42,8 +47,10 @@ class ProductController extends Controller
         return view('catalog.catalog', ['catalogViewModel' => $viewModel]);
     }
 
-    private function getShoppingCart()
+    public function getApiCatalogPage()
     {
-
+        $products = $this->productRepository->getAll();
+        $dto = $this->productListMapper->toDto($products);
+        return response()->json($dto);
     }
 }

@@ -33,7 +33,7 @@
             </td>
             <td class="productImage">
                 @if (count(json_decode($product['pictures']))>0)
-                    <img class="mx-auto d-block" src="images/Products/{{$product['id']}}/{{json_decode($product['pictures'])[0]}}" alt="photo"
+                    <img class="mx-auto d-block" src="{{json_decode($product['pictures'])[0]}}" alt="photo"
                          height="50pt" value="{{json_decode($product['pictures'])[0]}}">
                 @else
                     <img class="mx-auto d-block" src="/images/no-image.jpg" alt="photo"

@@ -22,8 +22,8 @@ Route::get('/', function () {
     return redirect('catalog');
 })->name('home');
 
-Route::get('catalog', [ProductController::class, 'getCatalogPage'])->name('catalog');
-Route::get('cart', [CartController::class, 'getCartPage'])->name('cart');
+ Route::get('catalog', [ProductController::class, 'getCatalogPage'])->name('catalog');
+ Route::get('cart', [CartController::class, 'getCartPage'])->name('cart');
 
 Route::group(['middleware' => 'auth', 'namespace' => 'App\Http\Controllers'], function () {
     Route::group(['middleware' => 'administrate', 'namespace' => 'App\Http\Controllers'], function () {
