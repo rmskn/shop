@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title;
  * @property string $description;
  * @property float $price;
- * @property string|null $images;
+ * @property string|null $pictures;
  */
 class Product extends Model
 {

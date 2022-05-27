@@ -32,10 +32,10 @@ Route::group(
             ProductController::class . '@getApiCatalogPage'
         );
 
-        $api->get(
-            'cart',
-            CartController::class . '@getCartPage'
-        );
+//        $api->get(
+//            'cart',
+//            CartController::class . '@getCartPage'
+//        );
 
     }
 );
